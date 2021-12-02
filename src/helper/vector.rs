@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use num;
 use std::ops::{Add, Neg, Sub};
 

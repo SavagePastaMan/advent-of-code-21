@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use num;
 
 pub fn gcd_vec<T>(data: &Vec<T>) -> T
