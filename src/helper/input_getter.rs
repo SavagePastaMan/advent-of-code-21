@@ -13,6 +13,7 @@ use std::io::BufReader;
 use std::io::Write;
 use std::path::Path;
 
+#[allow(dead_code)]
 pub fn parse_csv<T>(raw: &str) -> Vec<T>
 where
     T: num::PrimInt + Copy + std::str::FromStr,
@@ -29,11 +30,9 @@ static INPUT_CACHE: &'static str = "inputs.json";
 pub fn get_input(day: u32) -> Result<String, Box<dyn Error>> {
     let mut data: InputData = read_cache(INPUT_CACHE)?;
 
-    let mut fetched = fetch(day)?;
-
-    fetched = String::from(fetched.strip_suffix("\n").unwrap());
-
-    let entry = data.entry(day.to_string()).or_insert(fetched);
+    let entry = data
+        .entry(day.to_string())
+        .or_insert_with(|| String::from(fetch(day).unwrap().strip_suffix("\n").unwrap()));
     let ret = entry.clone();
 
     write_cache(INPUT_CACHE, &data)?;
