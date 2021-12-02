@@ -1,9 +1,9 @@
 mod solutions;
-pub(crate) mod helper;
+mod helper;
 
 use solutions::day01::*;
 
 fn main() {
-    let data = input();
-    println!("{:?}", one(data));
+    println!("Part 1: {:?}", one(input()));
+    println!("Part 2: {:?}", two(input()));
 }
